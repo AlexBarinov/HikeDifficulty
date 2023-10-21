@@ -1,0 +1,5 @@
+<strings>
+    <string id="AppName">Hiking Difficulty</string>
+    <string id="difficulty_label">Hike Difficulty</string>
+    <string id="difficulty_units">pts</string>
+</strings>
