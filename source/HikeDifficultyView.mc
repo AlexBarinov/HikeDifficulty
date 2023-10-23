@@ -8,6 +8,7 @@ import Toybox.Math;
 class HikeDifficultyView extends WatchUi.SimpleDataField {
 
     private var hikeDifficultyField as FitContributor.Field;
+    private var hikeDifficultyCategoryField as FitContributor.Field;
 
     // Set the label of the data field here.
     function initialize() {
@@ -19,8 +20,16 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
             {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>"pts"}
         );
 
+        hikeDifficultyCategoryField = createField(
+            "hike_difficulty_category", 1,
+            FitContributor.DATA_TYPE_STRING,
+            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :count=>24, :units=>""}
+        );
+
         hikeDifficultyField.setData(0);
-        label = "Hiking Difficulty";
+        hikeDifficultyCategoryField.setData(Rez.Strings.Category0);
+        
+        label = WatchUi.loadResource(Rez.Strings.DifficultyLabel).toUpper();
     }
 
     function compute(info as Activity.Info) as Numeric or Duration or String or Null {
@@ -41,7 +50,24 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
 
         var difficultyLong = Math.floor(Math.sqrt(difficulty)).toLong();
         
+        var resourse = Rez.Strings.Category500;
+        if (difficultyLong < 50) {
+            resourse = Rez.Strings.Category0;
+        } else if (difficultyLong < 100) {
+            resourse = Rez.Strings.Category50;
+        } else if (difficultyLong < 150) {
+            resourse = Rez.Strings.Category100;
+        } else if (difficultyLong < 200) {
+            resourse = Rez.Strings.Category150;
+        } else if (difficultyLong < 250) {
+            resourse = Rez.Strings.Category200;
+        } else if (difficultyLong < 500) {
+            resourse = Rez.Strings.Category250;
+        }
+
         hikeDifficultyField.setData(difficultyLong);
+        hikeDifficultyCategoryField.setData(WatchUi.loadResource(resourse));
+
         return difficultyLong;
     }
 }

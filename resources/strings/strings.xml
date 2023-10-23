@@ -1,5 +1,15 @@
 <strings>
     <string id="AppName">Hiking Difficulty</string>
-    <string id="difficulty_label">Hike Difficulty</string>
-    <string id="difficulty_units">pts</string>
+    <string id="DifficultyLabel">Hiking Difficulty</string>
+    <string id="DifficultyCategoryLabel">Hiking Difficulty Category</string>
+    <string id="DifficultyUnits">pts</string>
+    <string id="DifficultyCategoryUnits"></string>
+    
+    <string id="Category0">Easiest</string>
+    <string id="Category50">Moderate</string>
+    <string id="Category100">Moderately Strenuous</string>
+    <string id="Category150">Strenuous</string>
+    <string id="Category200">Very Strenuous</string>
+    <string id="Category250">Challenging</string>
+    <string id="Category500">Bomber</string>
 </strings>
