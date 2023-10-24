@@ -43,31 +43,47 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
             totalAscent = info.totalAscent;
         }
 
-        var difficulty = elapsedDistance * totalAscent * 0.004077249059;
-        if (difficulty < 0) {
-            difficulty = 0;
+        //
+        // Shenandoah's Hiking Difficulty is determined by a numerical rating
+        // using the following formula: 
+        //
+        // difficulty = sqrt(2 * e x d)
+        //
+        // where:
+        //      e - elevation gain in feet
+        //      d - distance in miles
+        //
+        // Because Garmin provides both distance and elevation gain in meters,
+        // the formula is refined as
+        //
+        // difficulty = sqrt(2 * (e * 3.28084) x (d / 1609.34)) = sqrt(e * d * 0.004077249059)
+        //
+
+        var difficultySquared = elapsedDistance * totalAscent * 0.004077249059;
+        if (difficultySquared < 0) {
+            difficultySquared = 0;
         }
 
-        var difficultyLong = Math.floor(Math.sqrt(difficulty)).toLong();
+        var difficulty = Math.floor(Math.sqrt(difficultySquared)).toLong();
         
         var resourse = Rez.Strings.Category500;
-        if (difficultyLong < 50) {
+        if (difficulty < 50) {
             resourse = Rez.Strings.Category0;
-        } else if (difficultyLong < 100) {
+        } else if (difficulty < 100) {
             resourse = Rez.Strings.Category50;
-        } else if (difficultyLong < 150) {
+        } else if (difficulty < 150) {
             resourse = Rez.Strings.Category100;
-        } else if (difficultyLong < 200) {
+        } else if (difficulty < 200) {
             resourse = Rez.Strings.Category150;
-        } else if (difficultyLong < 250) {
+        } else if (difficulty < 250) {
             resourse = Rez.Strings.Category200;
-        } else if (difficultyLong < 500) {
+        } else if (difficulty < 500) {
             resourse = Rez.Strings.Category250;
         }
 
-        hikeDifficultyField.setData(difficultyLong);
+        hikeDifficultyField.setData(difficulty);
         hikeDifficultyCategoryField.setData(WatchUi.loadResource(resourse));
 
-        return difficultyLong;
+        return difficulty;
     }
 }

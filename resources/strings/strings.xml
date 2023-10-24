@@ -2,7 +2,7 @@
     <string id="AppName">Hiking Difficulty</string>
     <string id="DifficultyLabel">Hiking Difficulty</string>
     <string id="DifficultyCategoryLabel">Hiking Difficulty Category</string>
-    <string id="DifficultyUnits">pts</string>
+    <string id="DifficultyUnits"></string>
     <string id="DifficultyCategoryUnits"></string>
     
     <string id="Category0">Easiest</string>
