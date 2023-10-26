@@ -1,4 +1,3 @@
 <fitContributions>
     <fitField id="0" displayInActivitySummary="true" sortOrder="0" precision="0" dataLabel="@Strings.DifficultyLabel" unitLabel="@Strings.DifficultyUnits" />
-    <fitField id="1" displayInActivitySummary="true" sortOrder="1" precision="0" dataLabel="@Strings.DifficultyCategoryLabel" unitLabel="@Strings.DifficultyCategoryUnits" />
 </fitContributions>

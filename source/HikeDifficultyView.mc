@@ -8,7 +8,6 @@ import Toybox.Math;
 class HikeDifficultyView extends WatchUi.SimpleDataField {
 
     private var hikeDifficultyField as FitContributor.Field;
-    private var hikeDifficultyCategoryField as FitContributor.Field;
 
     // Set the label of the data field here.
     function initialize() {
@@ -17,18 +16,10 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
         hikeDifficultyField = createField(
             "hike_difficulty", 0,
             FitContributor.DATA_TYPE_UINT16,
-            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>"pts"}
+            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>""}
         );
 
-        hikeDifficultyCategoryField = createField(
-            "hike_difficulty_category", 1,
-            FitContributor.DATA_TYPE_STRING,
-            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :count=>24, :units=>""}
-        );
-
-        hikeDifficultyField.setData(0);
-        hikeDifficultyCategoryField.setData(Rez.Strings.Category0);
-        
+        hikeDifficultyField.setData(0);        
         label = WatchUi.loadResource(Rez.Strings.DifficultyLabel).toUpper();
     }
 
@@ -65,24 +56,7 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
         }
 
         var difficulty = Math.floor(Math.sqrt(difficultySquared)).toLong();
-        
-        var resourse = Rez.Strings.Category500;
-        if (difficulty < 50) {
-            resourse = Rez.Strings.Category0;
-        } else if (difficulty < 100) {
-            resourse = Rez.Strings.Category50;
-        } else if (difficulty < 150) {
-            resourse = Rez.Strings.Category100;
-        } else if (difficulty < 200) {
-            resourse = Rez.Strings.Category150;
-        } else if (difficulty < 250) {
-            resourse = Rez.Strings.Category200;
-        } else if (difficulty < 500) {
-            resourse = Rez.Strings.Category250;
-        }
-
         hikeDifficultyField.setData(difficulty);
-        hikeDifficultyCategoryField.setData(WatchUi.loadResource(resourse));
 
         return difficulty;
     }
