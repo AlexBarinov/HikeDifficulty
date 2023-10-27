@@ -1,0 +1,8 @@
+bin/
+mir/
+gen/
+internal-mir/
+*.iq
+*.prg
+*.prg.debug.xml
+*-fit_contributions.json

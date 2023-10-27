@@ -19,8 +19,8 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
             {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>"pts"}
         );
 
-        hikeDifficultyField.setData(0);
-        label = "Hiking Difficulty";
+        hikeDifficultyField.setData(0);        
+        label = WatchUi.loadResource(Rez.Strings.DifficultyLabel).toUpper();
     }
 
     function compute(info as Activity.Info) as Numeric or Duration or String or Null {
@@ -34,14 +34,30 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
             totalAscent = info.totalAscent;
         }
 
-        var difficulty = elapsedDistance * totalAscent * 0.004077249059;
-        if (difficulty < 0) {
-            difficulty = 0;
+        //
+        // Shenandoah's Hiking Difficulty is determined by a numerical rating
+        // using the following formula: 
+        //
+        // difficulty = sqrt(2 * e x d)
+        //
+        // where:
+        //      e - elevation gain in feet
+        //      d - distance in miles
+        //
+        // Because Garmin provides both distance and elevation gain in meters,
+        // the formula is refined as
+        //
+        // difficulty = sqrt(2 * (e * 3.28084) x (d / 1609.34)) = sqrt(e * d * 0.004077249059)
+        //
+
+        var difficultySquared = elapsedDistance * totalAscent * 0.004077249059;
+        if (difficultySquared < 0) {
+            difficultySquared = 0;
         }
 
-        var difficultyLong = Math.floor(Math.sqrt(difficulty)).toLong();
-        
-        hikeDifficultyField.setData(difficultyLong);
-        return difficultyLong;
+        var difficulty = Math.floor(Math.sqrt(difficultySquared)).toLong();
+        hikeDifficultyField.setData(difficulty);
+
+        return difficulty;
     }
 }

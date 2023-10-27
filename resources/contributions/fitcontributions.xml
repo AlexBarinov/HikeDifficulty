@@ -1,3 +1,3 @@
 <fitContributions>
-    <fitField id="0" displayInActivitySummary="true" sortOrder="0" precision="0" dataLabel="@Strings.difficulty_label" unitLabel="@Strings.difficulty_units" />
+    <fitField id="0" displayInActivitySummary="true" sortOrder="0" precision="0" dataLabel="@Strings.DifficultyLabel" unitLabel="@Strings.DifficultyUnits" />
 </fitContributions>
