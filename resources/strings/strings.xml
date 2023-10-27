@@ -1,5 +1,5 @@
 <strings>
     <string id="AppName">Hiking Difficulty</string>
     <string id="DifficultyLabel">Hiking Difficulty</string>
-    <string id="DifficultyUnits"></string>    
+    <string id="DifficultyUnits">pts</string>    
 </strings>

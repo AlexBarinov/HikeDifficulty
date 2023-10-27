@@ -16,7 +16,7 @@ class HikeDifficultyView extends WatchUi.SimpleDataField {
         hikeDifficultyField = createField(
             "hike_difficulty", 0,
             FitContributor.DATA_TYPE_UINT16,
-            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>""}
+            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>"pts"}
         );
 
         hikeDifficultyField.setData(0);        
