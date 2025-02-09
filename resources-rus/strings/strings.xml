@@ -1,0 +1,14 @@
+<strings>
+    <string id="AppName">Сложность похода</string>
+
+    <string id="DifficultyLabel">Сложность</string>
+    <string id="DifficultyUnits">pts</string>
+
+    <string id="Level1">Легкая</string>
+    <string id="Level2">Средняя</string>
+    <string id="Level3">Выше среднего</string>
+    <string id="Level4">Сложная</string>
+    <string id="Level5">Очень сложная</string>
+    <string id="Level6">Сложнейшая</string>
+    <string id="Level7">Невероятная</string>
+</strings>
