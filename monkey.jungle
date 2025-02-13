@@ -1,1 +1,4 @@
 project.manifest = manifest.xml
+
+base.sourcePath = source;source-base
+epix2.sourcePath = source;source-epix2
